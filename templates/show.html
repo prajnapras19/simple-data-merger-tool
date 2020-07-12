@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Data Merger Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <ul id="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/add">Add Data</a></li>
+        <li><a href="/show">Show Data</a></li>
+        <li><a href="/delete">Delete Data</a></li>
+    </ul>
+    <h1>Show Data</h1>
+    <div id="options">
+        <form enctype="multipart/form-data" method="post">
+            <p>Select the <strong>csv</strong> file contains only the id(s) you want to see separated by newline (see example <a href="/download/example">here</a>)</p>
+            <input type="file" name="file"><br><br>
+            <text>Select columns (leave it blank to show all columns):</text>
+            <button type="button" onclick="addOption();">+</button>
+            <button type="button" onclick="removeOption()">-</button>
+            <div name="selectField" id="selectField"></div><br>
+            <input type="submit" value="Apply Options"/>
+        </form>
+    </div>
+    <br>
+    {% if available==0 %}
+    <i>No data avalable</i>
+    {% else %}
+    <table id="table">
+        <tr>
+            <th>ID</th>
+            {% for course in courses %}
+            <th>{{ course }}</th>
+            {% endfor %}
+        </tr>
+        {% for person in persons %}
+        <tr>
+            <td>{{ person }}</td>
+            {% for course in courses %}
+            <td>{{ person.getScores(course) }}</td>
+            {% endfor %}            
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <script type="text/javascript">
+        function addOption() {
+            let option = document.getElementById("selectField");
+            let data = document.createElement("select");
+            data.name = "selectColumn";
+            {% for course in courses %}
+            for (let i=1;i<=1;i++){
+                let added = document.createElement('option');
+                added.value = "{{ course }}";
+                added.appendChild(document.createTextNode('{{ course }}'));
+                data.appendChild(added);
+            }
+            {% endfor %}
+            option.appendChild(data);
+            option.appendChild(document.createElement("br"));
+        }
+        
+        function removeOption() {
+            let option = document.getElementById("selectField");
+            if (option.lastChild) {
+                option.removeChild(option.lastChild);
+                option.removeChild(option.lastChild);
+            }
+        }
+    </script>
+</body>

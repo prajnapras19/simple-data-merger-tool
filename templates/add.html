@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Data Merger Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <ul id="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/add">Add Data</a></li>
+        <li><a href="/show">Show Data</a></li>
+        <li><a href="/delete">Delete Data</a></li>
+    </ul>
+    <h1>Add Data</h1>
+    <p>Add data from <strong>csv</strong> file</p>
+    <p>You can view the template <a href="/download/template" download>here</a></p>
+    <p>Notes:</p>
+    <ul>
+        <li>Keep the first column of the first row as id</li>
+        <li>The first column should contains unique value, same record will overwrite the existing record</li>
+        <li>You can change the first row in other column except first column with the name you want</li>
+        <li>The first row should contains unique value, same record will overwrite the existing record</li>
+        <li>Of course, you can add more columns and more rows</li>
+        <li>For your convenience, please fill the empty cell(s) with dash (-), or anything that indicates the cell is empty</li>
+    </ul>
+    <form enctype="multipart/form-data" method="post">
+        <input type="file" name="file">
+        <input type="submit" value="Add Data"/>
+    </form>
+    <p id="error">{{ message }}</p>
+</body>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Data Merger Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <ul id="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/add">Add Data</a></li>
+        <li><a href="/show">Show Data</a></li>
+        <li><a href="/delete">Delete Data</a></li>
+    </ul>
+    <h1>Simple Data Merger Tool</h1>
+    <p>This simple tool is useful if you want to merge data which satisfy:</p>
+    <ul>
+        <li>Separated in some files, and have same unique identifier across the files</li>
+        <li>Data ordering is different in every files, but you want to order it with that unique identifier</li>
+        <li>Not have a good system to automate this process</li>
+    </ul>
+    <h3>Case example</h3>
+    <p>You are a teacher and you need to compile all the scoresheets of the final year student</p>
+    <p>Every year the class is shuffled, which means there exists a student assigned to the new class in the new year that different from the class he was assigned to in the previous year</p>
+    <p>But, you need to order the scores by the last updated namelist</p>
+    <h3>Notes</h3>
+    <ul>
+        <li>Add the data first in the "Add Data" tab (unfortunately, the csv file should be generated manually)</li>
+        <li>Go to the "Show Data" tab to view the data and apply filter to it</li>
+        <li>Go to the "Delete Data" tab to delete data</li>
+    </ul>
+</body>

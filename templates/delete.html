@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Data Merger Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <ul id="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/add">Add Data</a></li>
+        <li><a href="/show">Show Data</a></li>
+        <li><a href="/delete">Delete Data</a></li>
+    </ul>
+    <h1>Delete Data</h1>
+    <p>Select record(s) you want to delete</p>
+    {% if available==0 %}
+    <i>No data avalable</i>
+    {% else %}
+    <form enctype="multipart/form-data" method="post">
+        <input type="submit" value="Delete Data"><br>
+        <table id="table">
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                {% for course in courses %}
+                <th>{{ course }}</th>
+                {% endfor %}
+            </tr>
+            {% set i=0 %}
+            {% for person in persons %}
+            <tr>
+                <td><input type="checkbox" name="checked" value="{{ person }}"}></td> {% set i=i+1 %}
+                <td>{{ person }}</td>
+                {% for course in courses %}
+                <td>{{ person.getScores(course) }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </form>
+</body>
